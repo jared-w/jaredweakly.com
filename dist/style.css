@@ -1,0 +1,33 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    font-family: 'Playfair Display', serif;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #ba0f00;
+    display: grid;
+    place-content: center;
+}
+
+h1 {
+    font-size: 20vw;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+
+    color: #130000;
+    line-height: 1.15;
+    letter-spacing: 0.05em;
+    text-shadow: 0.075em 0.05em 0.01em rgba(39, 0, 3, 0.25);
+}
