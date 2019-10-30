@@ -11,6 +11,7 @@ import           Development.Shake.FilePath
 import           GHC.Generics                   ( Generic )
 import           Slick
 import           Hasmin
+import           System.Process
 
 import qualified Data.HashMap.Lazy             as HML
 import qualified Data.Text                     as T
@@ -63,13 +64,33 @@ buildIndex posts' = do
   let indexInfo = IndexInfo { posts = posts' }
       indexHTML =
         T.unpack $ substitute indexT (withSiteMeta $ toJSON indexInfo)
-  writeFile' (outputFolder </> "index.html") indexHTML
+
+  stdout <- liftIO
+    $ readCreateProcess (shell $ npx <> " <<< '" <> indexHTML <> "'") ""
+
+  writeFile' (outputFolder </> "index.html") stdout
 
 -- | Find and build all posts
 buildPosts :: Action [Post]
 buildPosts = do
   pPaths <- getDirectoryFiles "." ["site/posts//*.md"]
   forP pPaths buildPost
+
+-- Ridiculous
+npx :: String
+npx = concat
+  [ "npx html-minifier"
+  , " --collapse-whitespace"
+  , " --remove-comments"
+  , " --remove-optional-tags"
+  , " --remove-redundant-attributes"
+  , " --remove-script-type-attributes"
+  , " --remove-style-link-type-attributes"
+  , " --sort-attributes"
+  , " --use-short-doctype"
+  , " --minify-css true"
+  , " --minify-js true"
+  ]
 
 -- | Load a post, process metadata, write it to output, then return the post object
 -- Detects changes to either post content or template
@@ -84,9 +105,15 @@ buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
 
   let fullPostData = withSiteMeta . withPostUrl $ postData
   template <- compileTemplate' "site/templates/post.html"
-  writeFile' (outputFolder </> T.unpack postUrl) . T.unpack $ substitute
-    template
-    fullPostData
+  let f = substitute template fullPostData
+
+  -- yolo swaggins assume blindly that I can exec npx html-minifier since
+  -- Haskell doesn't have a minifying library for HTML
+  -- Further, this isn't POSIX compliant because it uses heredocs
+  stdout <- liftIO
+    $ readCreateProcess (shell $ npx <> " <<< '" <> T.unpack f <> "'") ""
+
+  writeFile' (outputFolder </> T.unpack postUrl) stdout
   convert fullPostData
 
 buildCSS :: FilePath -> FilePath -> Action ()

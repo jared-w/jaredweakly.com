@@ -25,6 +25,7 @@ dependencies:
     - aeson
     - lens-aeson
     - hasmin
+    - process
 
 executables:
     build:
