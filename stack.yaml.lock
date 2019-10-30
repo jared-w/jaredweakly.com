@@ -11,6 +11,13 @@ packages:
       sha256: 792dfdb3ab701760d954ceab020397135e1265b7126979cafe9b0edd8e586d6e
   original:
     hackage: slick-1.0.0.0
+- completed:
+    hackage: hasmin-1.0.3@sha256:9bf0a7ad1531407ee7940f204d4a33624b94dae6dd48d7d5c3ba6071e637b9a7,7736
+    pantry-tree:
+      size: 4699
+      sha256: cb5a75d11fc4303d5fd400dd2a7198ef1dd8abef6770a22a9a782cc0b77ee0cd
+  original:
+    hackage: hasmin-1.0.3
 snapshots:
 - completed:
     size: 545658

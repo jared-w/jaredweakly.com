@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: da5088ced24ad5a1f2ed1cca57e3074dcc6f6601a056402e27f0f49b4c47bff1
+-- hash: a333f0c32e34d680bd292bc0bf071b431158c59edad5dec9c5b92bd06aab1285
 
 name:           jaredweakly
 version:        0.1.0.0
@@ -38,6 +38,7 @@ executable build
       aeson
     , base >=4.7 && <5
     , containers
+    , hasmin
     , lens
     , lens-aeson
     , shake

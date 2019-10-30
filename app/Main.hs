@@ -10,6 +10,7 @@ import           Development.Shake.Forward
 import           Development.Shake.FilePath
 import           GHC.Generics                   ( Generic )
 import           Slick
+import           Hasmin
 
 import qualified Data.HashMap.Lazy             as HML
 import qualified Data.Text                     as T
@@ -76,11 +77,11 @@ buildPost :: FilePath -> Action Post
 buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
   liftIO . putStrLn $ "Rebuilding post: " <> srcPath
   postContent <- readFile' srcPath
-  -- load post content and metadata as JSON blob
+
   postData    <- markdownToHTML . T.pack $ postContent
   let postUrl     = T.pack . dropDirectory1 $ srcPath -<.> "html"
       withPostUrl = _Object . at "url" ?~ String postUrl
-  -- Add additional metadata we've been able to compute
+
   let fullPostData = withSiteMeta . withPostUrl $ postData
   template <- compileTemplate' "site/templates/post.html"
   writeFile' (outputFolder </> T.unpack postUrl) . T.unpack $ substitute
@@ -88,12 +89,25 @@ buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
     fullPostData
   convert fullPostData
 
+buildCSS :: FilePath -> FilePath -> Action ()
+buildCSS src dst = cacheAction ("css" :: T.Text, src) $ do
+  liftIO . putStrLn $ "Minimizing CSS: " <> src
+  css <- readFile' src
+  let c = either (const "") id (minifyCSS $ T.pack css)
+  writeFile' dst (T.unpack c)
+
 -- | Copy all static files from the listed folders to their destination
 copyStaticFiles :: Action ()
 copyStaticFiles = do
-  filepaths <- getDirectoryFiles "./site/" ["images//*", "css//*", "_redirects"]
+  filepaths <- getDirectoryFiles "./site/" ["images//*", "_redirects"]
   void $ forP filepaths $ \filepath ->
     copyFileChanged ("site" </> filepath) (outputFolder </> filepath)
+
+buildStaticFiles :: Action ()
+buildStaticFiles = do
+  filepaths <- getDirectoryFiles "./site/" ["css//*"]
+  void $ forP filepaths $ \filepath ->
+    buildCSS ("site" </> filepath) (outputFolder </> filepath)
 
 -- | Specific build rules for the Shake system
 --   defines workflow to build the website
@@ -102,6 +116,7 @@ buildRules = do
   allPosts <- buildPosts
   buildIndex allPosts
   copyStaticFiles
+  buildStaticFiles
 
 main :: IO ()
 main = do
