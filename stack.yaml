@@ -1,0 +1,7 @@
+resolver: lts-14.12
+
+packages:
+    - .
+
+extra-deps:
+    - slick-1.0.0.0
