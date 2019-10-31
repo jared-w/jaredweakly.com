@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c95325bd0b08c3d41f7338ba6c897aeec3f81bf4001f106265ffbb502c0caa48
+-- hash: f0beabc0f779084d2448ce3cd386ab2c231b540a2f5ec412d0f42754bc55d0d5
 
 name:           jaredweakly
 version:        0.1.0.0
@@ -29,6 +29,7 @@ source-repository head
 executable build
   main-is: Main.hs
   other-modules:
+      Pandoc
       Paths_jaredweakly
   hs-source-dirs:
       app
@@ -41,6 +42,8 @@ executable build
     , hasmin
     , lens
     , lens-aeson
+    , pandoc
+    , pandoc-types
     , process
     , shake
     , slick

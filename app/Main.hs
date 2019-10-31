@@ -16,6 +16,8 @@ import           System.Process
 import qualified Data.HashMap.Lazy             as HML
 import qualified Data.Text                     as T
 
+import           Pandoc
+
 siteMeta :: SiteMeta
 siteMeta = SiteMeta { siteAuthor   = "Jared Weakly"
                     , baseUrl      = "https://jaredweakly.com"
@@ -98,8 +100,7 @@ buildPost :: FilePath -> Action Post
 buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
   liftIO . putStrLn $ "Rebuilding post: " <> srcPath
   postContent <- readFile' srcPath
-
-  postData    <- markdownToHTML . T.pack $ postContent
+  postData    <- mdToHtml . T.pack $ postContent
   let postUrl     = T.pack . dropDirectory1 $ srcPath -<.> "html"
       withPostUrl = _Object . at "url" ?~ String postUrl
 
@@ -110,6 +111,9 @@ buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
   -- yolo swaggins assume blindly that I can exec npx html-minifier since
   -- Haskell doesn't have a minifying library for HTML
   -- Further, this isn't POSIX compliant because it uses heredocs
+  --
+  -- This would've been vaguely nicer if I could've figured out how to use
+  -- shake's cmd and pipe things from stdin but meh
   stdout <- liftIO
     $ readCreateProcess (shell $ npx <> " <<< '" <> T.unpack f <> "'") ""
 

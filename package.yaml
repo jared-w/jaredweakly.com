@@ -26,6 +26,8 @@ dependencies:
     - lens-aeson
     - hasmin
     - process
+    - pandoc-types
+    - pandoc
 
 executables:
     build:

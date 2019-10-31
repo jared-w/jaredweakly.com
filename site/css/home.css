@@ -1,19 +1,6 @@
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
 :root {
     font-family: 'Playfair Display', serif;
     --shade: rgba(39, 0, 3, 0.25);
-}
-
-body,
-html {
-    height: 100%;
 }
 
 body {
