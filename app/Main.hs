@@ -29,11 +29,27 @@ siteMeta = SiteMeta { siteAuthor   = "Jared Weakly"
 outputFolder :: FilePath
 outputFolder = "dist/"
 
+-- Ridiculous
+npx :: String
+npx = concat
+  [ "npx html-minifier"
+  , " --collapse-whitespace"
+  , " --remove-comments"
+  , " --remove-redundant-attributes"
+  , " --remove-script-type-attributes"
+  , " --remove-style-link-type-attributes"
+  , " --sort-attributes"
+  , " --use-short-doctype"
+  , " --minify-css true"
+  , " --minify-js true"
+  ]
+
 withSiteMeta :: Value -> Value
 withSiteMeta (Object obj) = Object $ HML.union obj siteMetaObj
   where Object siteMetaObj = toJSON siteMeta
 withSiteMeta _ = error "only add site meta to objects"
 
+-- | Base meta information
 data SiteMeta =
     SiteMeta { siteAuthor    :: String
              , baseUrl       :: String
@@ -47,6 +63,7 @@ data SiteMeta =
 data IndexInfo =
   IndexInfo
     { posts :: [Post]
+    , pages :: [Page]
     } deriving (Generic, Show, FromJSON, ToJSON)
 
 -- | Data for a blog post
@@ -56,58 +73,32 @@ data Post =
          , url     :: String
          , date    :: String
          , image   :: Maybe String
+         , template :: Maybe String
          }
     deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
 
--- | given a list of posts this will build a table of contents
-buildIndex :: [Post] -> Action ()
-buildIndex posts' = do
-  indexT <- compileTemplate' "site/templates/index.html"
-  let indexInfo = IndexInfo { posts = posts' }
-      indexHTML =
-        T.unpack $ substitute indexT (withSiteMeta $ toJSON indexInfo)
+-- | Data for a page
+data Page =
+    Page { title    :: String
+         , content  :: String
+         , url      :: String
+         , template :: Maybe String
+         }
+    deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
 
-  stdout <- liftIO
-    $ readCreateProcess (shell $ npx <> " <<< '" <> indexHTML <> "'") ""
-
-  writeFile' (outputFolder </> "index.html") stdout
+buildDir :: FilePath -> (FilePath -> Action a) -> Action [a]
+buildDir p f = getDirectoryFiles "." [p] >>= parallel . map f
 
 -- | Find and build all posts
 buildPosts :: Action [Post]
-buildPosts = do
-  pPaths <- getDirectoryFiles "." ["site/posts//*.md"]
-  forP pPaths buildPost
+buildPosts = buildDir "site/posts//*.md" buildPost
 
--- Ridiculous
-npx :: String
-npx = concat
-  [ "npx html-minifier"
-  , " --collapse-whitespace"
-  , " --remove-comments"
-  , " --remove-optional-tags"
-  , " --remove-redundant-attributes"
-  , " --remove-script-type-attributes"
-  , " --remove-style-link-type-attributes"
-  , " --sort-attributes"
-  , " --use-short-doctype"
-  , " --minify-css true"
-  , " --minify-js true"
-  ]
+-- | Find and build all pages
+buildPages :: Action [Page]
+buildPages = buildDir "site/pages//*.md" buildPage
 
--- | Load a post, process metadata, write it to output, then return the post object
--- Detects changes to either post content or template
-buildPost :: FilePath -> Action Post
-buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
-  liftIO . putStrLn $ "Rebuilding post: " <> srcPath
-  postContent <- readFile' srcPath
-  postData    <- mdToHtml . T.pack $ postContent
-  let postUrl     = T.pack . dropDirectory1 $ srcPath -<.> "html"
-      withPostUrl = _Object . at "url" ?~ String postUrl
-
-  let fullPostData = withSiteMeta . withPostUrl $ postData
-  template <- compileTemplate' "site/templates/post.html"
-  let f = substitute template fullPostData
-
+buildHTML :: FilePath -> T.Text -> Action ()
+buildHTML p html = do
   -- yolo swaggins assume blindly that I can exec npx html-minifier since
   -- Haskell doesn't have a minifying library for HTML
   -- Further, this isn't POSIX compliant because it uses heredocs
@@ -115,10 +106,44 @@ buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
   -- This would've been vaguely nicer if I could've figured out how to use
   -- shake's cmd and pipe things from stdin but meh
   stdout <- liftIO
-    $ readCreateProcess (shell $ npx <> " <<< '" <> T.unpack f <> "'") ""
+    $ readCreateProcess (shell $ npx <> " <<< '" <> T.unpack html <> "'") ""
+  writeFile' (outputFolder </> p) stdout
 
-  writeFile' (outputFolder </> T.unpack postUrl) stdout
-  convert fullPostData
+-- | given a list of posts and pages this will build a table of contents
+buildIndex :: [Post] -> [Page] -> Action ()
+buildIndex posts' pages' = do
+  indexT <- compileTemplate' "site/templates/directory.html"
+  let indexInfo = IndexInfo { posts = posts', pages = pages' }
+      indexHTML = substitute indexT (withSiteMeta $ toJSON indexInfo)
+
+  buildHTML "directory.html" indexHTML
+
+-- | Load a page, process metadata, write it to output, then return the post object
+-- Detects changes to either post content or template
+buildPage :: FilePath -> Action Page
+buildPage srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
+  liftIO . putStrLn $ "Rebuilding page: " <> srcPath
+  fillTemplate "page" srcPath (dropDirectory1 . dropDirectory1 $ srcPath)
+
+-- | Load a post, process metadata, write it to output, then return the post object
+-- Detects changes to either post content or template
+buildPost :: FilePath -> Action Post
+buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
+  liftIO . putStrLn $ "Rebuilding post: " <> srcPath
+  fillTemplate "post" srcPath (dropDirectory1 srcPath)
+
+fillTemplate :: FromJSON b => String -> FilePath -> FilePath -> Action b
+fillTemplate def srcPath url = do
+  content <- readFile' srcPath
+  data'    <- mdToHtml . T.pack $ content
+  let u = url -<.> "html"
+  let withUrl = _Object . at "url" ?~ String (T.pack u)
+
+  let fullData = withSiteMeta . withUrl $ data'
+      t = maybe def T.unpack $ fullData ^? key "template" . _String
+  template <- compileTemplate' ("site/templates/" <> t -<.> ".html")
+  buildHTML u (substitute template fullData)
+  convert fullData
 
 buildCSS :: FilePath -> FilePath -> Action ()
 buildCSS src dst = cacheAction ("css" :: T.Text, src) $ do
@@ -144,8 +169,7 @@ buildStaticFiles = do
 --   defines workflow to build the website
 buildRules :: Action ()
 buildRules = do
-  allPosts <- buildPosts
-  buildIndex allPosts
+  join $ buildIndex <$> buildPosts <*> buildPages
   copyStaticFiles
   buildStaticFiles
 

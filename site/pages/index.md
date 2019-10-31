@@ -1,6 +1,5 @@
 ---
 title: "Jared Weakly"
-description: Hello World
+template: home
+description: Jared Weakly
 ---
-
-Sup

@@ -9,14 +9,14 @@
 
         <h1>{{ title }}</h1>
         {{#image}}
-        <img class="post-image" src="/images/{{ image }}" />
+        <img src="/images/{{ image }}" />
         {{/image}}
         {{#siteAuthor}}
-        <span class="byline">by {{ siteAuthor }}</span>
+        <span>by {{ siteAuthor }}</span>
         {{/siteAuthor}}
-        <span class="date">{{ date }}</span>
+        <span>{{ date }}</span>
         <main>
-            <article class="post">{{{content}}}</article>
+            <article>{{{content}}}</article>
         </main>
     </body>
 

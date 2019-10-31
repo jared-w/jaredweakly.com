@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{>site/templates/head.html}}
+        <title>{{ siteTitle }}</title>
+    </head>
+    <body>
+        {{>site/templates/header.html}}
+
+        <h1>Site Index</h1>
+
+        <section>
+            <h2>Posts</h2>
+            <ul>
+                {{#posts}}
+                <li>
+                    <a href="{{ url }}">
+                        {{ title }}
+                        <span>{{ date }}</span>
+                    </a>
+                </li>
+                {{/posts}}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Pages</h2>
+            <ul>
+                {{#pages}}
+                <li>
+                    <a href="{{ url }}">
+                        {{ title }}
+                        <span>{{ date }}</span>
+                    </a>
+                </li>
+                {{/pages}}
+            </ul>
+        </section>
+
+        {{>site/templates/footer.html}}
+    </body>
+</html>
