@@ -7,16 +7,19 @@
     <body>
         {{>site/templates/header.html}}
 
-        <h1>{{ title }}</h1>
-        {{#image}}
-        <img src="/images/{{ image }}" />
-        {{/image}}
-        {{#siteAuthor}}
-        <span>by {{ siteAuthor }}</span>
-        {{/siteAuthor}}
-        <span>{{ date }}</span>
         <main id="main" tabindex="-1">
-            <article>{{{content}}}</article>
+            <aricle class="stack">
+                <header>
+                    <div class="wrapper stack">
+                        <h1>{{ title }}</h1>
+                        {{#image}}
+                        <img src="/images/{{ image }}" />
+                        {{/image}}
+                        <span>{{ date }}</span>
+                    </div>
+                </header>
+                <div class="wrapper stack -lg">{{{content}}}</div>
+            </aricle>
         </main>
     </body>
 

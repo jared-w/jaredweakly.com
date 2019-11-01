@@ -1,0 +1,23 @@
+<nav class="wrapper">
+    <style>
+        [href*='github'] > svg {
+            height: 1.125em;
+            width: 1.125em;
+        }
+    </style>
+    <ul class="top-navigation">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <!-- CV goes here at some point -->
+        {{#githubUser}}
+        <span class="split"></span>
+        <li>
+            <a href="https://github.com/{{ githubUser }}">
+                {{>site/images/github.svg}}
+            </a>
+        </li>
+        {{/githubUser}}
+    </ul>
+</nav>

@@ -1,16 +1,28 @@
-body {
-    background-color: var(--p2);
+a[href] {
+    text-shadow: -3px 1px var(--c-p2), -2px 1px var(--c-p2),
+        -1px 1px var(--c-p2), 1px 1px var(--c-p2), 2px 1px var(--c-p2),
+        3px 1px var(--c-p2);
+}
+
+a[href]:hover {
+    mix-blend-mode: difference;
+    text-shadow: none;
 }
 
 h1 {
     font-size: 15vw;
     text-align: center;
+    line-height: 1.125;
 
-    color: var(--p4);
+    color: var(--c-p4);
     letter-spacing: 0.05em;
     text-shadow: 0.075em 0.05em 0.01em var(--shade);
 }
 
 h1::selection {
     background-color: var(--shade);
+}
+
+footer {
+    display: none;
 }
