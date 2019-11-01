@@ -91,7 +91,7 @@ buildDir p f = getDirectoryFiles "." [p] >>= parallel . map f
 
 -- | Find and build all posts
 buildPosts :: Action [Post]
-buildPosts = buildDir "site/posts//*.md" buildPost
+buildPosts = buildDir "site/blog//*.md" buildPost
 
 -- | Find and build all pages
 buildPages :: Action [Page]
@@ -116,7 +116,7 @@ buildIndex posts' pages' = do
   let indexInfo = IndexInfo { posts = posts', pages = pages' }
       indexHTML = substitute indexT (withSiteMeta $ toJSON indexInfo)
 
-  buildHTML "blog.html" indexHTML
+  buildHTML "blog/index.html" indexHTML
 
 -- | Load a page, process metadata, write it to output, then return the post object
 -- Detects changes to either post content or template

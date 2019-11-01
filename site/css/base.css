@@ -85,6 +85,21 @@
     line-height: var(--line-height);
 }
 
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
 body {
     padding: var(--margin-sm);
 }
@@ -120,6 +135,7 @@ h4 {
     font-family: 'Playfair Display', serif;
     text-transform: uppercase;
     line-height: var(--line-height-sm);
+    font-weight: 700;
 }
 
 h1 {
@@ -136,7 +152,6 @@ h3 {
 
 h4 {
     font-size: calc(var(--font-size) * var(--s0));
-    font-weight: bolder;
 }
 
 [href='#main']:not(:focus),
@@ -239,6 +254,7 @@ ul.top-navigation {
     --stack-gap: calc(var(--s2) * 1rem);
 }
 
+article > * + *,
 .stack > * + * {
     margin-top: var(--stack-gap);
 }
