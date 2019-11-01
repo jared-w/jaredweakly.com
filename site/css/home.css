@@ -26,3 +26,8 @@ h1::selection {
 footer {
     display: none;
 }
+
+main {
+    display: flex;
+    align-items: center;
+}
