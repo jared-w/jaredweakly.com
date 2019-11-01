@@ -1,10 +1,26 @@
-<!-- <header> -->
-<!--     <nav> -->
-<!--         <a href="/">HOME</a> -->
-<!--         {{#githubUser}} -->
-<!--         <a href="https://github.com/{{ githubUser }}"> -->
-<!--             <img src="/images/github&#45;logo.png" alt="Github Profile" /> -->
-<!--         </a> -->
-<!--         {{/githubUser}} -->
-<!--     </nav> -->
-<!-- </header> -->
+<header>
+    <style>
+        [href*='github'] > svg {
+            height: 1.125em;
+            width: 1.125em;
+        }
+    </style>
+    <a href="#main">Skip to Main Content</a>
+    <nav>
+        <ul class="top-navigation">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <!-- CV goes here at some point -->
+            {{#githubUser}}
+            <span class="split"></span>
+            <li>
+                <a href="https://github.com/{{ githubUser }}">
+                    {{>site/images/github.svg}}
+                </a>
+            </li>
+            {{/githubUser}}
+        </ul>
+    </nav>
+</header>

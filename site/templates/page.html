@@ -7,9 +7,10 @@
     <body>
         {{>site/templates/header.html}}
 
-        <main>{{{content}}}</main>
+        <main id="main" tabindex="-1">
+            <section>{{{content}}}</section>
+        </main>
 
         {{>site/templates/footer.html}}
-        <!-- <link rel="stylesheet" href="css/page.css" /> -->
     </body>
 </html>

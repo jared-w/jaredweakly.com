@@ -1,3 +1,5 @@
+/* Largely taken from Andy Bell's reset */
+
 /* Box sizing rules */
 *,
 *::before,
@@ -73,4 +75,39 @@ select {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+/*
+ * Select modern-normalize styles
+ */
+
+:root {
+    -moz-tab-size: 4;
+    tab-size: 4;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+hr {
+    height: 0;
+}
+
+abbr[title] {
+    text-decoration: underline dotted;
+}
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+code,
+kbd,
+samp,
+pre {
+    font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier,
+        monospace;
+    font-size: 1em;
 }

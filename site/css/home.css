@@ -1,21 +1,12 @@
-:root {
-    font-family: 'Playfair Display', serif;
-    --shade: rgba(39, 0, 3, 0.25);
-}
-
 body {
-    background-color: #ba0f00;
-    display: grid;
-    place-content: center;
+    background-color: var(--p2);
 }
 
 h1 {
-    font-size: 20vw;
+    font-size: 15vw;
     text-align: center;
-    text-rendering: optimizeLegibility;
 
-    color: #130000;
-    line-height: 1.15;
+    color: var(--p4);
     letter-spacing: 0.05em;
     text-shadow: 0.075em 0.05em 0.01em var(--shade);
 }

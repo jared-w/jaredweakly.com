@@ -112,11 +112,11 @@ buildHTML p html = do
 -- | given a list of posts and pages this will build a table of contents
 buildIndex :: [Post] -> [Page] -> Action ()
 buildIndex posts' pages' = do
-  indexT <- compileTemplate' "site/templates/directory.html"
+  indexT <- compileTemplate' "site/templates/archive.html"
   let indexInfo = IndexInfo { posts = posts', pages = pages' }
       indexHTML = substitute indexT (withSiteMeta $ toJSON indexInfo)
 
-  buildHTML "directory.html" indexHTML
+  buildHTML "blog.html" indexHTML
 
 -- | Load a page, process metadata, write it to output, then return the post object
 -- Detects changes to either post content or template
@@ -149,7 +149,7 @@ buildCSS :: FilePath -> FilePath -> Action ()
 buildCSS src dst = cacheAction ("css" :: T.Text, src) $ do
   liftIO . putStrLn $ "Minimizing CSS: " <> src
   css <- readFile' src
-  let c = either (const "") id (minifyCSS $ T.pack css)
+  let c = either (error . show) id (minifyCSS $ T.pack css)
   writeFile' dst (T.unpack c)
 
 -- | Copy all static files from the listed folders to their destination

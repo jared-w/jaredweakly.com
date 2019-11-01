@@ -25,6 +25,9 @@ mdToHtml t = loadUsing md (writeHtml5String defaultHtml5Options) t
 -- That way I can handle recursive structure and keep things inside pandoc as
 -- much as possible to take advantage of the generic AST
 processBlock :: Block -> Block
-processBlock (B.Div a@(_, classes, _) contents) | "cover" `elem` classes =
-  B.Div a . toList . divWith nullAttr $ fromList contents
+processBlock (B.Div a@(_, classes, attrs) contents) | "cover" `elem` classes =
+  B.Div a
+    $   (head . toList . divWith nullAttr)
+    <$> [get "header", fromList contents, get "footer"]
+  where get s = plain . text $ maybe mempty id $ lookup s attrs
 processBlock b = b

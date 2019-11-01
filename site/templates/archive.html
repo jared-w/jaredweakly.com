@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{>site/templates/head.html}}
+        <title>{{ siteTitle }}</title>
+    </head>
+    <body>
+        {{>site/templates/header.html}}
+
+        <main id="main" tabindex="-1">
+            <section>
+                <h1>Archive</h1>
+
+                <article>
+                    <h2>Posts</h2>
+                    <ul>
+                        {{#posts}}
+                        <li>
+                            <a href="{{ url }}">
+                                {{ title }}
+                                <span>{{ date }}</span>
+                            </a>
+                        </li>
+                        {{/posts}}
+                    </ul>
+                </article>
+
+                <article>
+                    <h2>Pages</h2>
+                    <ul>
+                        {{#pages}}
+                        <li>
+                            <a href="{{ url }}">
+                                {{ title }}
+                                <span>{{ date }}</span>
+                            </a>
+                        </li>
+                        {{/pages}}
+                    </ul>
+                </article>
+            </section>
+        </main>
+
+        {{>site/templates/footer.html}}
+    </body>
+</html>

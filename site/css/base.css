@@ -1,0 +1,205 @@
+:root {
+    --pl0: rgba(252, 120, 153, 1);
+    --pl1: rgba(255, 222, 230, 1);
+    --pl2: rgba(254, 165, 187, 1);
+    --pl3: rgba(249, 82, 124, 1);
+    --pl4: rgba(244, 47, 96, 1);
+
+    --sl0: rgba(121, 202, 241, 1);
+    --sl1: rgba(223, 244, 254, 1);
+    --sl2: rgba(166, 222, 249, 1);
+    --sl3: rgba(83, 182, 229, 1);
+    --sl4: rgba(48, 157, 209, 1);
+
+    --tl0: rgba(255, 234, 121, 1);
+    --tl1: rgba(255, 250, 223, 1);
+    --tl2: rgba(255, 241, 166, 1);
+    --tl3: rgba(255, 227, 84, 1);
+    --tl4: rgba(255, 222, 49, 1);
+
+    --p0: rgba(137, 7, 40, 1);
+    --p1: rgba(214, 1, 55, 1);
+    --p2: rgba(170, 10, 50, 1);
+    --p3: rgba(96, 0, 24, 1);
+    --p4: rgba(57, 0, 14, 1);
+
+    --s0: rgba(10, 67, 95, 1);
+    --s1: rgba(8, 103, 148, 1);
+    --s2: rgba(13, 83, 118, 1);
+    --s3: rgba(3, 46, 67, 1);
+    --s4: rgba(2, 27, 39, 1);
+
+    --t0: rgba(151, 128, 8, 1);
+    --t1: rgba(235, 197, 2, 1);
+    --t2: rgba(186, 158, 11, 1);
+    --t3: rgba(105, 88, 0, 1);
+    --t4: rgba(62, 52, 0, 1);
+
+    --shade: rgba(39, 0, 3, 0.25);
+
+    /* Scale: 4/3 */
+    --s-6: 0.237;
+    --s-5: 0.316;
+    --s-4: 0.422;
+    --s-3: 0.563;
+    --s-2: 0.75;
+    --s-1: 0.875;
+    --s0: 1;
+    --s1: 1.143;
+    --s2: 1.333;
+    --s3: 1.777;
+    --s4: 2.373;
+    --s5: 3.164;
+    --s6: 4.219;
+    --s7: 5.635;
+    --s8: 7.5;
+    --s9: 10;
+
+    /* Variables for rest of system */
+    --easing: cubic-bezier(var(--s-6), var(--s-1), var(--s-6), 1);
+    --duration: calc(var(--s-3) * 1s);
+
+    font-family: 'Merriweather', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol';
+
+    background-color: var(--pl1);
+    color: var(--p4);
+    cursor: auto;
+
+    --font-size: calc(var(--s-5) * 1vw + var(--s-1) * 1rem);
+    --font-size-icon: calc(var(--font-size) * var(--s6));
+
+    /* margins and heights */
+    --line-height: var(--s2);
+    --line-height-sm: var(--s1);
+    --margin-xs: calc(var(--font-size) * var(--s-4));
+    --margin-sm: calc(var(--font-size) * var(--s-2));
+    --margin-md: var(--font-size);
+    --margin-lg: calc(var(--font-size) * var(--s2));
+    --margin-xl: calc(var(--font-size) * var(--s3));
+    --border-padding: calc(var(--s3) * 1px);
+
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+}
+
+a {
+    color: currentColor;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: calc(var(--font-size) * var(--s7));
+}
+
+h2 {
+    font-size: calc(var(--font-size) * var(--s6));
+}
+
+h3 {
+    font-size: calc(var(--font-size) * var(--s5));
+}
+
+h4 {
+    font-size: calc(var(--font-size) * var(--s4));
+}
+
+[href='#main']:not(:focus),
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+}
+
+/* Skip to main content */
+[href='#main']:focus,
+[href='#main']:active {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+[href='#main']:focus,
+[href='#main']:active {
+    background-color: var(--pl1);
+    color: var(--p4);
+    padding: var(--margin-sm);
+    border: var(--border-padding) var(--p4);
+    font-weight: bold;
+}
+
+[href*='github'] > svg {
+    height: 1.125em;
+    width: 1.125em;
+    display: flex;
+}
+
+/*
+ * <https://every-layout.dev/layouts/cover/>
+ */
+.cover {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: var(--margin-md);
+}
+
+.cover > * {
+    margin-block: var(--margin-lg);
+}
+
+.cover > :first-child:not(main) {
+    margin-block-start: 0;
+}
+
+.cover > :last-child:not(main) {
+    margin-block-end: 0;
+}
+
+.cover > main {
+    margin-block: auto;
+}
+
+/*
+ * Navigation
+ */
+ul.top-navigation {
+    display: flex;
+    align-items: center;
+
+    max-width: 80rem;
+    margin-inline: auto;
+}
+
+.top-navigation li {
+    flex-shrink: 0;
+    padding: 1rem 0;
+}
+
+.top-navigation li + li {
+    margin-left: var(--margin-lg);
+}
+
+.top-navigation .split {
+    margin-left: auto;
+}
+
+/* change this later */
+main > section {
+    max-width: 80rem;
+    margin-inline: auto;
+}

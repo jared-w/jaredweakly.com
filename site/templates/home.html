@@ -3,16 +3,21 @@
     <head>
         {{>site/templates/head.html}}
         <style>
+            :root {
+                --p2: rgba(170, 10, 50, 1);
+            }
             body {
-                background-color: #ba0f00;
+                background-color: var(--p2);
             }
         </style>
         <title>{{ siteTitle }}</title>
     </head>
-    <body>
+    <body class="cover">
         {{>site/templates/header.html}}
 
-        <h1>{{ siteTitle }}</h1>
+        <main id="main" tabindex="-1">
+            <h1>{{ siteTitle }}</h1>
+        </main>
 
         {{>site/templates/footer.html}}
         <link rel="stylesheet" href="css/home.css" />

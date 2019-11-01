@@ -1,1 +1,1 @@
-:root{font-family:playfair display,serif;--shade:#27000340}body{background-color:#ba0f00;display:grid;place-content:center}h1{font-size:20vw;text-align:center;text-rendering:optimizeLegibility;color:#130000;line-height:1.15;letter-spacing:.05em;text-shadow:.075em .05em .01em var(--shade)}h1::selection{background-color:var(--shade)}
+body{background-color:var(--p2)}h1{font-size:15vw;text-align:center;color:var(--p4);letter-spacing:.05em;text-shadow:.075em .05em .01em var(--shade)}h1::selection{background-color:var(--shade)}
