@@ -141,26 +141,26 @@ buildIndex posts' pages' = do
 buildPage :: FilePath -> Action Page
 buildPage srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
   liftIO . putStrLn $ "Rebuilding page: " <> srcPath
-  fillTemplate "page" srcPath (dropDirectory1 . dropDirectory1 $ srcPath)
+  fillTemplate "page" srcPath (dropDirectory1 . dropDirectory1 $ srcPath -<.> "html")
 
 -- | Load a post, process metadata, write it to output, then return the post object
 -- Detects changes to either post content or template
 buildPost :: FilePath -> Action Post
 buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
   liftIO . putStrLn $ "Rebuilding post: " <> srcPath
-  fillTemplate "post" srcPath (dropDirectory1 srcPath)
+  fillTemplate "post" srcPath (dropDirectory1 srcPath -<.> "html")
 
 fillTemplate :: FromJSON b => String -> FilePath -> FilePath -> Action b
 fillTemplate def srcPath url = do
   content <- readFile' srcPath
   data'   <- mdToHtml . T.pack $ content
-  let u       = url -<.> "html"
+  let u       = "/" </> dropExtension url
   let withUrl = _Object . at "url" ?~ String (T.pack u)
 
   let fullData = withSiteMeta . withUrl $ data'
       t        = maybe def T.unpack $ fullData ^? key "template" . _String
-  template <- compileTemplate' ("site/templates/" <> t -<.> ".html")
-  buildHTML u (substitute template fullData)
+  template <- compileTemplate' ("site/templates/" <> t -<.> "html")
+  buildHTML url (substitute template fullData)
   convert fullData
 
 buildCSS :: FilePath -> FilePath -> Action ()
