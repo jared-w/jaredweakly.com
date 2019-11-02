@@ -1,8 +1,14 @@
+{-# LANGUAGE InstanceSigs #-}
 module Main where
 
-import           Control.Lens
-import           Control.Monad
-import           Data.Aeson                    as A
+import           Control.Lens                   ( (^?)
+                                                , (?~)
+                                                , at
+                                                )
+import           Control.Monad                  ( void
+                                                , join
+                                                )
+import           Data.Aeson
 import           Data.Aeson.Lens
 import           Development.Shake
 import           Development.Shake.Classes
@@ -11,7 +17,12 @@ import           Development.Shake.FilePath
 import           GHC.Generics                   ( Generic )
 import           Slick
 import           Hasmin
-import           System.Process
+import           System.Process                 ( readCreateProcess
+                                                , shell
+                                                )
+import           Data.Time.Format
+import           Data.Time.LocalTime
+import           Data.List                      ( sort )
 
 import qualified Data.HashMap.Lazy             as HML
 import qualified Data.Text                     as T
@@ -75,7 +86,14 @@ data Post =
          , image   :: Maybe String
          , template :: Maybe String
          }
-    deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
+    deriving (Generic, Eq, Show, FromJSON, ToJSON, Binary)
+
+instance Ord Post where
+  compare :: Post -> Post -> Ordering
+  compare Post { date = a } Post { date = b } = compare (parse a) (parse b)
+   where
+    parse :: String -> Maybe LocalTime
+    parse = parseTimeM True defaultTimeLocale "%Y-%-m-%-d"
 
 -- | Data for a page
 data Page =
@@ -91,7 +109,7 @@ buildDir p f = getDirectoryFiles "." [p] >>= parallel . map f
 
 -- | Find and build all posts
 buildPosts :: Action [Post]
-buildPosts = buildDir "site/blog//*.md" buildPost
+buildPosts = reverse . sort <$> buildDir "site/blog//*.md" buildPost
 
 -- | Find and build all pages
 buildPages :: Action [Page]
@@ -135,12 +153,12 @@ buildPost srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
 fillTemplate :: FromJSON b => String -> FilePath -> FilePath -> Action b
 fillTemplate def srcPath url = do
   content <- readFile' srcPath
-  data'    <- mdToHtml . T.pack $ content
-  let u = url -<.> "html"
+  data'   <- mdToHtml . T.pack $ content
+  let u       = url -<.> "html"
   let withUrl = _Object . at "url" ?~ String (T.pack u)
 
   let fullData = withSiteMeta . withUrl $ data'
-      t = maybe def T.unpack $ fullData ^? key "template" . _String
+      t        = maybe def T.unpack $ fullData ^? key "template" . _String
   template <- compileTemplate' ("site/templates/" <> t -<.> ".html")
   buildHTML u (substitute template fullData)
   convert fullData

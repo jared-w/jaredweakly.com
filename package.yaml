@@ -28,6 +28,7 @@ dependencies:
     - process
     - pandoc-types
     - pandoc
+    - time
 
 executables:
     build:

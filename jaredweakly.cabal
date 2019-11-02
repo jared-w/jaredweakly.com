@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f0beabc0f779084d2448ce3cd386ab2c231b540a2f5ec412d0f42754bc55d0d5
+-- hash: 4385355ef28e79c07a1a568bb06caf3a9f95b26ed93827faaf9f47e073a78a0c
 
 name:           jaredweakly
 version:        0.1.0.0
@@ -48,5 +48,6 @@ executable build
     , shake
     , slick
     , text
+    , time
     , unordered-containers
   default-language: Haskell2010
