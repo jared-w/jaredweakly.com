@@ -66,7 +66,6 @@
     cursor: auto;
 
     --font-size: calc(var(--s-2) * 1vw + var(--s0) * 1rem);
-    --font-size-icon: calc(var(--font-size) * var(--s6));
 
     /* margins and heights */
     --line-height: var(--s2);
@@ -78,11 +77,33 @@
     --margin-xl: calc(var(--font-size) * var(--s4));
     --border-padding: calc(var(--s3) * 1px);
 
-    --measure: calc(var(--font-size) * var(--s9));
+    --measure: 65ch;
     --stack-gap: calc(var(--s0) * 1rem);
 
     font-size: var(--font-size);
     line-height: var(--line-height);
+}
+
+@media screen and (max-width: 33em) {
+    :root {
+        /* Scale: 4/3 */
+        --s-4: 0.317;
+        --s-3: 0.422;
+        --s-2: 0.563;
+        --s-1: 0.75;
+        --s0: 1;
+        --s1: 1.333;
+        --s2: 1.777;
+        --s3: 2.369;
+        --s4: 3.157;
+        --s5: 4.209;
+        --s6: 5.61;
+        --s7: 7.478;
+        --s8: 9.969;
+        --s9: 13.288;
+
+        --font-size: calc(var(--s-4) * 1vw + var(--s0) * 1rem);
+    }
 }
 
 article,
@@ -102,6 +123,9 @@ summary {
 
 body {
     padding: var(--margin-sm);
+    word-wrap: break-word;
+    font-kerning: normal;
+    font-feature-settings: 'kern', 'liga', 'clig', 'calt';
 }
 
 main {
@@ -119,12 +143,12 @@ a[href] {
     text-shadow: -3px 2px var(--c-sl1), -2px 1px var(--c-sl1),
         -1px 1px var(--c-sl1), 1px 1px var(--c-sl1), 2px 1px var(--c-sl1),
         3px 2px var(--c-sl1);
-    box-shadow: inset 0 -0.1em 0 0 var(--c-sl3);
+    box-shadow: inset 0 -0.1em 0 0 var(--c-pl3);
     transition: box-shadow var(--duration) var(--easing);
 }
 
 a[href]:hover {
-    box-shadow: inset 0 -1.2em 0 0 var(--c-sl3);
+    box-shadow: inset 0 -1.2em 0 0 var(--c-pl3);
     text-shadow: none;
 }
 
@@ -225,6 +249,7 @@ main[tabindex='-1'] {
 ul.top-navigation {
     display: flex;
     align-items: center;
+    overflow-x: auto;
 }
 
 .top-navigation li {
@@ -232,7 +257,8 @@ ul.top-navigation {
     padding: 1rem 0;
 }
 
-.top-navigation li + li {
+.top-navigation li + li,
+.top-navigation .split + li {
     margin-left: var(--margin-md);
 }
 
@@ -246,6 +272,11 @@ ul.top-navigation {
     padding-inline: var(--margin-md);
 }
 
+ul:not([class]),
+.stack {
+    --stack-gap: calc(var(--s0) * 1rem);
+}
+
 .stack.-md {
     --stack-gap: calc(var(--s1) * 1rem);
 }
@@ -254,6 +285,7 @@ ul.top-navigation {
     --stack-gap: calc(var(--s2) * 1rem);
 }
 
+ul:not([class]) > li:not([class]) + li:not(class),
 article > * + *,
 .stack > * + * {
     margin-top: var(--stack-gap);

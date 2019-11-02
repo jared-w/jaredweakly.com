@@ -1,10 +1,12 @@
 a[href] {
+    box-shadow: inset 0 -0.1em 0 0 var(--c-sl3);
     text-shadow: -3px 1px var(--c-p2), -2px 1px var(--c-p2),
         -1px 1px var(--c-p2), 1px 1px var(--c-p2), 2px 1px var(--c-p2),
         3px 1px var(--c-p2);
 }
 
 a[href]:hover {
+    box-shadow: inset 0 -1.2em 0 0 var(--c-sl3);
     mix-blend-mode: difference;
     text-shadow: none;
 }
@@ -23,11 +25,11 @@ h1::selection {
     background-color: var(--shade);
 }
 
-footer {
-    display: none;
+[role='contentinfo'] {
+    opacity: 0;
+    margin-top: 0;
 }
 
 main {
-    display: flex;
-    align-items: center;
+    flex: unset;
 }
