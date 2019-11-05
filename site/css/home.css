@@ -1,14 +1,10 @@
-a[href] {
-    box-shadow: inset 0 -0.1em 0 0 var(--c-sl3);
-    text-shadow: -3px 1px var(--c-p2), -2px 1px var(--c-p2),
-        -1px 1px var(--c-p2), 1px 1px var(--c-p2), 2px 1px var(--c-p2),
-        3px 1px var(--c-p2);
+:root {
+    color: var(--c-p4);
+    --shade: rgba(96, 0, 24, 0.25);
 }
 
-a[href]:hover {
-    box-shadow: inset 0 -1.2em 0 0 var(--c-sl3);
-    mix-blend-mode: difference;
-    text-shadow: none;
+a[href] {
+    --link-underline: var(--c-sl3);
 }
 
 h1 {
@@ -16,13 +12,8 @@ h1 {
     text-align: center;
     line-height: 1.125;
 
-    color: var(--c-p4);
     letter-spacing: 0.05em;
     text-shadow: 0.075em 0.05em 0.01em var(--shade);
-}
-
-h1::selection {
-    background-color: var(--shade);
 }
 
 [role='contentinfo'] {

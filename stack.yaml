@@ -6,3 +6,4 @@ packages:
 extra-deps:
     - slick-1.0.0.0
     - hasmin-1.0.3
+    - pandoc-emphasize-code-0.2.4

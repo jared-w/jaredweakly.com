@@ -29,6 +29,7 @@ dependencies:
     - pandoc-types
     - pandoc
     - time
+    - pandoc-emphasize-code
 
 executables:
     build:

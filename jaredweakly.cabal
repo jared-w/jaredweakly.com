@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4385355ef28e79c07a1a568bb06caf3a9f95b26ed93827faaf9f47e073a78a0c
+-- hash: af10b82e892008e2d69e17b26730e9152e0447f0151138298b94d907b9d200ea
 
 name:           jaredweakly
 version:        0.1.0.0
@@ -43,6 +43,7 @@ executable build
     , lens
     , lens-aeson
     , pandoc
+    , pandoc-emphasize-code
     , pandoc-types
     , process
     , shake

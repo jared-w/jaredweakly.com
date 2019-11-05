@@ -35,7 +35,7 @@
     --c-t3: rgba(105, 88, 0, 1);
     --c-t4: rgba(62, 52, 0, 1);
 
-    --shade: rgba(39, 0, 3, 0.25);
+    --shade: rgba(3, 46, 67, 0.25);
 
     /* Scale: 1.5 */
     --s-4: 0.198;
@@ -62,7 +62,7 @@
         'Segoe UI Emoji', 'Segoe UI Symbol';
 
     background-color: var(--c-sl1);
-    color: var(--c-p4);
+    color: var(--c-s4);
     cursor: auto;
 
     --font-size: calc(var(--s-2) * 1vw + var(--s0) * 1rem);
@@ -79,6 +79,7 @@
 
     --measure: 65ch;
     --stack-gap: calc(var(--s0) * 1rem);
+    --link-underline: var(--c-pl3);
 
     font-size: var(--font-size);
     line-height: var(--line-height);
@@ -104,6 +105,10 @@
 
         --font-size: calc(var(--s-4) * 1vw + var(--s0) * 1rem);
     }
+}
+
+::selection {
+    background-color: var(--shade);
 }
 
 article,
@@ -137,19 +142,12 @@ a {
 }
 
 a[href] {
-    color: var(--c-s4);
-
-    text-decoration: none;
-    text-shadow: -3px 2px var(--c-sl1), -2px 1px var(--c-sl1),
-        -1px 1px var(--c-sl1), 1px 1px var(--c-sl1), 2px 1px var(--c-sl1),
-        3px 2px var(--c-sl1);
-    box-shadow: inset 0 -0.1em 0 0 var(--c-pl3);
+    text-decoration-color: var(--link-underline);
     transition: box-shadow var(--duration) var(--easing);
 }
 
 a[href]:hover {
-    box-shadow: inset 0 -1.2em 0 0 var(--c-pl3);
-    text-shadow: none;
+    box-shadow: inset 0 -1.3em 0 0 var(--link-underline);
 }
 
 h1,
@@ -176,6 +174,11 @@ h3 {
 
 h4 {
     font-size: calc(var(--font-size) * var(--s0));
+}
+
+blockquote {
+    padding-left: var(--margin-sm);
+    border-left: calc(var(--s-3) * 1em) solid var(--c-tl3);
 }
 
 [href='#main']:not(:focus),
@@ -300,7 +303,7 @@ body {
 }
 
 main {
-    flex: 1;
+    flex-grow: 1;
 }
 
 [role='contentinfo'] {

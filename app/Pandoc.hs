@@ -1,4 +1,8 @@
-module Pandoc where
+module Pandoc
+  ( mdToHtml
+  , processBlock
+  )
+where
 
 import           Control.Monad
 import           Data.Aeson                    as A
