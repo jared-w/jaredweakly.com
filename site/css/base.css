@@ -231,7 +231,8 @@ main[tabindex='-1'] {
 }
 
 .cover > * {
-    margin-block: var(--margin-md);
+    margin-block-start: var(--margin-md);
+    margin-block-end: var(--margin-md);
 }
 
 .cover > :first-child:not(main) {
@@ -243,7 +244,8 @@ main[tabindex='-1'] {
 }
 
 .cover > main {
-    margin-block: auto;
+    margin-block-start: auto;
+    margin-block-end: auto;
 }
 
 /*
@@ -271,8 +273,10 @@ ul.top-navigation {
 
 .wrapper {
     max-width: var(--measure);
-    margin-inline: auto;
-    padding-inline: var(--margin-md);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--margin-md);
+    padding-right: var(--margin-md);
 }
 
 ul:not([class]),
