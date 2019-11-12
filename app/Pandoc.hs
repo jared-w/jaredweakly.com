@@ -1,23 +1,26 @@
 module Pandoc
-  ( mdToHtml
-  , processBlock
-  )
+    ( mdToHtml
+    , processBlock
+    )
 where
 
+import           Data.Maybe
 import           Control.Monad
 import           Data.Aeson                    as A
 import           Development.Shake
 import qualified Data.Text                     as T
-import           Slick.Pandoc
+import           Slick.Pandoc                   ( defaultHtml5Options
+                                                , loadUsing
+                                                )
 import           Text.Pandoc
 import           Text.Pandoc.Builder           as B
 import           Text.Pandoc.Walk
 
 mdToHtml :: T.Text -> Action Value
-mdToHtml t = loadUsing md (writeHtml5String defaultHtml5Options) t
- where
-  md   = readMarkdown exts >=> pure . walk processBlock
-  exts = def { readerExtensions = pandocExtensions }
+mdToHtml = loadUsing md (writeHtml5String defaultHtml5Options)
+  where
+    md   = readMarkdown exts >=> pure . walk processBlock
+    exts = def { readerExtensions = pandocExtensions }
 
 -- The goal of this is to take markdown of the form
 -- ::: component
@@ -30,8 +33,10 @@ mdToHtml t = loadUsing md (writeHtml5String defaultHtml5Options) t
 -- much as possible to take advantage of the generic AST
 processBlock :: Block -> Block
 processBlock (B.Div a@(_, classes, attrs) contents) | "cover" `elem` classes =
-  B.Div a
-    $   (head . toList . divWith nullAttr)
-    <$> [get "header", fromList contents, get "footer"]
-  where get s = plain . text $ maybe mempty id $ lookup s attrs
+    B.Div a
+        $   head
+        .   toList
+        .   divWith nullAttr
+        <$> [get "header", fromList contents, get "footer"]
+    where get s = plain . text $ fromMaybe mempty $ lookup s attrs
 processBlock b = b
