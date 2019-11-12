@@ -3,3 +3,4 @@
 .shake
 cabal.project.local
 dist-newstyle
+todo*
