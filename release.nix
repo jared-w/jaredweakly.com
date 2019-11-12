@@ -3,8 +3,9 @@ let
     packageOverrides = pkgs: rec {
       haskellPackages = pkgs.haskellPackages.override {
         overrides = haskellPackagesNew: haskellPackagesOld: rec {
-          site =
-            haskellPackagesNew.callPackage ./jaredweakly.nix { };
+          site = pkgs.haskell.lib.addExtraLibrary
+            ( haskellPackagesNew.callPackage ./jaredweakly.nix { } )
+            ( pkgs.nodePackages.html-minifier );
         };
       };
     };

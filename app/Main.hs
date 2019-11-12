@@ -44,7 +44,7 @@ outputFolder = "dist/"
 -- Ridiculous
 npx :: String
 npx = concat
-    [ "npx html-minifier"
+    [ "html-minifier"
     , " --collapse-whitespace"
     , " --remove-comments"
     , " --remove-redundant-attributes"
@@ -118,10 +118,6 @@ buildPages = buildDir "site/pages//*.md" buildPage
 
 buildHTML :: FilePath -> T.Text -> Action ()
 buildHTML p html = do
-  -- yolo swaggins assume blindly that I can exec npx html-minifier since
-  -- Haskell doesn't have a minifying library for HTML
-  -- Further, this isn't POSIX compliant because it uses heredocs
-  --
   -- This would've been vaguely nicer if I could've figured out how to use
   -- shake's cmd and pipe things from stdin but meh
     stdout <- liftIO
