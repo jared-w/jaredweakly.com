@@ -1,1 +1,1 @@
-(import ./release.nix).site.env
+(import ./default.nix).site.env

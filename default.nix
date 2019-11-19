@@ -1,0 +1,28 @@
+let
+  pkgs = import (fetchTarball
+    "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz") {};
+  gitignoreSrc = pkgs.fetchFromGitHub {
+    owner = "hercules-ci";
+    repo = "gitignore";
+    rev = "f9e996052b5af4032fe6150bba4a6fe4f7b9d698";
+    sha256 = "sha256:0jrh5ghisaqdd0vldbywags20m2cxpkbbk5jjjmwaw0gr8nhsafv";
+  };
+  inherit (import gitignoreSrc { inherit (pkgs) lib; }) gitignoreSource;
+in let
+  config = {
+    packageOverrides = pkgs: rec {
+      haskellPackages = pkgs.haskellPackages.override {
+        overrides = self: super: rec {
+          site = pkgs.haskell.lib.addExtraLibrary
+            (self.callCabal2nix "jaredweakly"
+              (gitignoreSource ./.) { })
+            (pkgs.nodePackages.html-minifier);
+        };
+      };
+    };
+  };
+  pkgs = import (fetchTarball
+    "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz") {
+      inherit config;
+    };
+in { site = pkgs.haskellPackages.site; }
