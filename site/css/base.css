@@ -127,14 +127,15 @@ summary {
 }
 
 body {
-    padding: var(--margin-sm);
     word-wrap: break-word;
     font-kerning: normal;
     font-feature-settings: 'kern', 'liga', 'clig', 'calt';
 }
 
 main {
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
 }
 
 a {
@@ -304,10 +305,6 @@ article > * + *,
 body {
     display: flex;
     flex-direction: column;
-}
-
-main {
-    flex-grow: 1;
 }
 
 [role='contentinfo'] {
