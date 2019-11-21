@@ -13,10 +13,10 @@ in let
     packageOverrides = pkgs: rec {
       haskellPackages = pkgs.haskellPackages.override {
         overrides = self: super: rec {
-          site = pkgs.haskell.lib.addExtraLibrary
+          site = pkgs.haskell.lib.addExtraLibraries
             (self.callCabal2nix "jaredweakly"
               (gitignoreSource ./.) { })
-            (pkgs.nodePackages.html-minifier);
+            (with pkgs.nodePackages; [ html-minifier serve ]);
         };
       };
     };
