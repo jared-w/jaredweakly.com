@@ -131,7 +131,7 @@ buildIndex posts' pages' = do
     let indexInfo = IndexInfo { posts = posts', pages = pages' }
         indexHTML = substitute indexT (withSiteMeta $ toJSON indexInfo)
 
-    buildHTML "blog/index.html" indexHTML
+    buildHTML "blog.html" indexHTML
 
 -- | Load a page, process metadata, write it to output, then return the post object
 -- Detects changes to either post content or template
