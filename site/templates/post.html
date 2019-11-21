@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{>site/templates/head.html}}
-        <title>{{ title }}</title>
-    </head>
-    <body>
-        {{>site/templates/header.html}}
+  <head>
+    {{>site/templates/head.html}}
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    {{>site/templates/header.html}}
 
-        <main id="main" tabindex="-1">
-            <aricle class="stack">
-                <header>
-                    <div class="wrapper stack">
-                        <h1>{{ title }}</h1>
-                        {{#image}}
-                        <img src="/images/{{ image }}" />
-                        {{/image}}
-                        <span>{{ date }}</span>
-                    </div>
-                </header>
-                <div class="wrapper stack -lg">{{{content}}}</div>
-            </aricle>
-        </main>
-    </body>
+    <main id="main" tabindex="-1">
+      <aricle class="stack">
+        <header>
+          <div class="wrapper stack">
+            <h1>{{ title }}</h1>
+            {{#image}}
+            <img src="/images/{{ image }}" />
+            {{/image}}
+            <span>{{ date }}</span>
+          </div>
+        </header>
+        <div class="wrapper stack -lg post-body">{{{content}}}</div>
+      </aricle>
+    </main>
+  </body>
 
-    {{>site/templates/footer.html}}
+  {{>site/templates/footer.html}}
 </html>

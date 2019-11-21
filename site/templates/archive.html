@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{>site/templates/head.html}}
-        <title>{{ siteTitle }}</title>
-    </head>
-    <body>
-        {{>site/templates/header.html}}
+  <head>
+    {{>site/templates/head.html}}
+    <title>{{ siteTitle }}</title>
+  </head>
+  <body>
+    {{>site/templates/header.html}}
 
-        <main id="main" tabindex="-1">
-            <article class="wrapper">
-                <h1>Posts</h1>
-                <ul>
-                    {{#posts}}
-                    <li>
-                        <a href="{{ url }}">
-                            {{ title }}
-                            <span>{{ date }}</span>
-                        </a>
-                    </li>
-                    {{/posts}}
-                </ul>
-            </article>
-        </main>
+    <main id="main" tabindex="-1">
+      <article class="wrapper">
+        <h1>Posts</h1>
+        <ul>
+          {{#posts}}
+          <li>
+            <a href="{{ url }}">
+              {{ title }}
+              <span>{{ date }}</span>
+            </a>
+          </li>
+          {{/posts}}
+        </ul>
+      </article>
+    </main>
 
-        {{>site/templates/footer.html}}
-    </body>
+    {{>site/templates/footer.html}}
+  </body>
 </html>

@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{>site/templates/head.html}}
-        <style>
-            :root {
-                --c-p2: rgba(170, 10, 50, 1);
-            }
-            body {
-                background-color: var(--c-p2);
-            }
-        </style>
-        <title>{{ siteTitle }}</title>
-    </head>
-    <body class="cover">
-        {{>site/templates/header.html}}
+  <head>
+    {{>site/templates/head.html}}
+    <style>
+      :root {
+        --c-p2: rgba(170, 10, 50, 1);
+      }
+      body {
+        background-color: var(--c-p2);
+      }
+    </style>
+    <title>{{ siteTitle }}</title>
+  </head>
+  <body class="cover">
+    {{>site/templates/header.html}}
 
-        <main id="main" tabindex="-1">
-            <h1>{{ siteTitle }}</h1>
-        </main>
+    <main id="main" tabindex="-1">
+      <h1>{{ siteTitle }}</h1>
+    </main>
 
-        {{>site/templates/footer.html}}
-        <link rel="stylesheet" href="/css/home.css" />
-    </body>
+    {{>site/templates/footer.html}}
+    <link rel="stylesheet" href="/css/home.css" />
+  </body>
 </html>
