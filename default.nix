@@ -1,6 +1,7 @@
 let
   pkgs = import (fetchTarball
-    "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz") {};
+    "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz")
+    { };
   gitignoreSrc = pkgs.fetchFromGitHub {
     owner = "hercules-ci";
     repo = "gitignore";
@@ -14,8 +15,7 @@ in let
       haskellPackages = pkgs.haskellPackages.override {
         overrides = self: super: rec {
           site = pkgs.haskell.lib.addExtraLibraries
-            (self.callCabal2nix "jaredweakly"
-              (gitignoreSource ./.) { })
+            (self.callCabal2nix "jaredweakly" (gitignoreSource ./.) { })
             (with pkgs.nodePackages; [ html-minifier serve ]);
         };
       };
@@ -25,4 +25,8 @@ in let
     "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz") {
       inherit config;
     };
-in { site = pkgs.haskellPackages.site; }
+in if pkgs.lib.inNixShell then
+  pkgs.haskellPackages.site.env
+else {
+  site = pkgs.haskellPackages.site;
+}
