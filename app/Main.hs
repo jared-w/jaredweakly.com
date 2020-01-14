@@ -171,7 +171,7 @@ buildCSS src dst = cacheAction ("css" :: T.Text, src) $ do
 
 -- | Copy all static files from the listed folders to their destination
 copyStaticFiles :: Action ()
-copyStaticFiles = do
+copyStaticFiles = cacheAction ("static-files" :: T.Text) $ do
     filepaths <- getDirectoryFiles "./site/" ["images//*", "_redirects"]
     void $ forP filepaths $ \filepath ->
         copyFileChanged ("site" </> filepath) (outputFolder </> filepath)
