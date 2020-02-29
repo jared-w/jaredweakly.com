@@ -1,9 +1,9 @@
 pre {
   line-height: var(--line-height-sm);
-  background-color: var(--c-tl1);
-  border: calc(var(--s-4) * 1em) solid var(--c-t2);
+  background-color: var(--c-sl1);
+  border: calc(var(--s-4) * 1em) solid var(--c-s2);
   padding: calc(var(--s0) * 1em);
-  box-shadow: calc(var(--s-3) * 1em) calc(var(--s-3) * 1em) 0 0 var(--c-t3);
+  box-shadow: calc(var(--s-3) * 1em) calc(var(--s-3) * 1em) 0 0 var(--c-s3);
   overflow-x: auto;
 }
 
@@ -13,7 +13,7 @@ code {
 }
 
 code mark {
-  background-color: var(--c-tl2);
+  background-color: var(--c-sl2);
 }
 
 code mark.block {

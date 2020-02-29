@@ -1,12 +1,3 @@
-:root {
-  color: var(--c-p4);
-  --shade: rgba(96, 0, 24, 0.25);
-}
-
-a[href] {
-  --link-underline: var(--c-sl3);
-}
-
 h1 {
   font-size: 15vw;
   text-align: center;

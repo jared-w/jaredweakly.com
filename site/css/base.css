@@ -1,21 +1,15 @@
 :root {
   --c-pl0: rgba(252, 120, 153, 1);
-  --c-pl1: rgba(255, 240, 245, 1);
+  --c-pl1: rgba(255, 250, 251, 1);
   --c-pl2: rgba(254, 165, 187, 1);
   --c-pl3: rgba(249, 82, 124, 1);
   --c-pl4: rgba(244, 47, 96, 1);
 
   --c-sl0: rgba(121, 202, 241, 1);
-  --c-sl1: rgba(240, 250, 255, 1);
+  --c-sl1: rgba(245, 252, 255, 1);
   --c-sl2: rgba(166, 222, 249, 1);
   --c-sl3: rgba(83, 182, 229, 1);
   --c-sl4: rgba(48, 157, 209, 1);
-
-  --c-tl0: rgba(255, 234, 121, 1);
-  --c-tl1: rgba(255, 253, 240, 1);
-  --c-tl2: rgba(255, 241, 166, 1);
-  --c-tl3: rgba(255, 227, 84, 1);
-  --c-tl4: rgba(255, 222, 49, 1);
 
   --c-p0: rgba(137, 7, 40, 1);
   --c-p1: rgba(214, 1, 55, 1);
@@ -29,13 +23,7 @@
   --c-s3: rgba(3, 46, 67, 1);
   --c-s4: rgba(2, 27, 39, 1);
 
-  --c-t0: rgba(151, 128, 8, 1);
-  --c-t1: rgba(235, 197, 2, 1);
-  --c-t2: rgba(186, 158, 11, 1);
-  --c-t3: rgba(105, 88, 0, 1);
-  --c-t4: rgba(62, 52, 0, 1);
-
-  --shade: rgba(3, 46, 67, 0.25);
+  --shade: rgba(96, 0, 24, 0.25);
 
   /* Scale: 1.5 */
   --s-4: 0.198;
@@ -61,8 +49,8 @@
     Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
 
-  background-color: var(--c-sl1);
-  color: var(--c-s4);
+  background-color: var(--c-pl1);
+  color: var(--c-p4);
   cursor: auto;
 
   --font-size: calc(var(--s-2) * 1vw + var(--s0) * 1rem);
@@ -79,7 +67,7 @@
 
   --measure: 65ch;
   --stack-gap: calc(var(--s0) * 1rem);
-  --link-underline: var(--c-pl3);
+  --link-underline: var(--c-sl3);
 
   font-size: var(--font-size);
   line-height: var(--line-height);
@@ -129,7 +117,7 @@ summary {
 body {
   word-wrap: break-word;
   font-kerning: normal;
-  font-feature-settings: "kern", "liga", "clig", "calt";
+  font-variant-ligatures: common-ligatures contextual discretionary-ligatures;
 }
 
 main {
@@ -179,7 +167,7 @@ h4 {
 
 blockquote {
   padding-left: var(--margin-sm);
-  border-left: calc(var(--s-3) * 1em) solid var(--c-tl3);
+  border-left: calc(var(--s-3) * 1em) solid var(--c-sl3);
 }
 
 [href="#main"]:not(:focus),
@@ -205,10 +193,11 @@ blockquote {
 
 [href="#main"]:focus,
 [href="#main"]:active {
-  background-color: var(--c-pl1);
-  color: var(--c-p4);
+  background-color: var(--c-sl1);
+  color: var(--c-s4);
   padding: var(--margin-sm);
-  border: var(--border-padding) var(--c-p4);
+  border-width: var(--border-padding);
+  border-color: var(--c-s4);
   font-weight: bold;
 }
 
