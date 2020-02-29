@@ -8,19 +8,18 @@ This website is built with a focus towards simplicity and performance.
 
 For the site itself
 
-* HTML
-* CSS
+- HTML
+- CSS
 
 For building the site
 
-* Shake -- Haskell alternative to Make
-* Slick -- Helper functions for Shake
-* Pandoc -- Markdown -> HTML, among other things
-* Handlebars -- HTML templates used by Slick
+- Shake -- Haskell alternative to Make
+- Slick -- Helper functions for Shake
+- Pandoc -- Markdown -> HTML, among other things
+- Handlebars -- HTML templates used by Slick
 
 Build infrastructure
 
-* Nix
-* Lorri (direnv on steroids for Nix)
+- Nix
 
 The site is hosted by Netlify.
