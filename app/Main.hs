@@ -177,5 +177,5 @@ buildRules = void $ parallel
 
 main :: IO ()
 main =
-  shakeArgsForward shakeOptions { shakeThreads = 0, shakeLintInside = [""] }
+  shakeArgsForward shakeOptions { shakeThreads = 0, shakeLintInside = ["."] }
     $ buildRules
