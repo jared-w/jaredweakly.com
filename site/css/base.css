@@ -249,7 +249,8 @@ ul.top-navigation {
 
 .top-navigation li {
   flex-shrink: 0;
-  padding: 1rem 0;
+  padding-block-start: calc(var(--s0) * 1rem);
+  padding-block-end: calc(var(--s0) * 1rem);
 }
 
 .top-navigation li + li,
