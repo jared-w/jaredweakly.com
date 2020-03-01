@@ -2,14 +2,7 @@
 <html lang="en">
   <head>
     {{>site/templates/head.html}}
-    <style>
-      :root {
-        --c-p2: rgba(170, 10, 50, 1);
-      }
-      body {
-        background-color: var(--c-p2);
-      }
-    </style>
+    <link rel="stylesheet" href="/css/home.css" />
     <title>{{ siteTitle }}</title>
   </head>
   <body class="cover">
@@ -20,6 +13,5 @@
     </main>
 
     {{>site/templates/footer.html}}
-    <link rel="stylesheet" href="/css/home.css" />
   </body>
 </html>

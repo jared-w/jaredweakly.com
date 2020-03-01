@@ -49,7 +49,8 @@
     Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
 
-  background-color: var(--c-pl1);
+  --background-color: var(--c-pl1);
+  background-color: var(--background-color);
   color: var(--c-p4);
   cursor: auto;
 
@@ -135,6 +136,11 @@ a[href] {
   transition: box-shadow var(--duration) var(--easing);
 }
 
+a[href]:focus {
+  outline: none;
+}
+
+a[href]:focus,
 a[href]:hover {
   box-shadow: inset 0 -1.3em 0 0 var(--link-underline);
 }
@@ -184,21 +190,27 @@ blockquote {
 }
 
 /* Skip to main content */
-[href="#main"]:focus,
-[href="#main"]:active {
+a[href="#main"]:focus,
+a[href="#main"]:active {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-[href="#main"]:focus,
-[href="#main"]:active {
-  background-color: var(--c-sl1);
+a[href="#main"]:focus,
+a[href="#main"]:active {
+  background-color: var(--background-color);
   color: var(--c-s4);
   padding: var(--margin-sm);
   border-width: var(--border-padding);
   border-color: var(--c-s4);
   font-weight: bold;
+
+  --height: calc(
+    -1 * (1em * var(--line-height) + var(--margin-sm) * 2 +
+          var(--border-padding) * 2)
+  );
+  box-shadow: inset 0 var(--height) 0 0 var(--link-underline);
 }
 
 main[tabindex="-1"] {
@@ -209,6 +221,16 @@ main[tabindex="-1"] {
   height: 1.125em;
   width: 1.125em;
   display: flex;
+  transition: filter var(--duration) var(--easing);
+}
+
+[href*="github"]:focus > svg,
+[href*="github"]:hover > svg {
+  filter: drop-shadow(0 0.1em 0 var(--link-underline));
+}
+
+svg {
+  fill: currentColor;
 }
 
 /*
