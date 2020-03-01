@@ -99,7 +99,7 @@ buildPages :: Action [Page]
 buildPages = buildDir "site/pages//*.md" buildPage
 
 buildHTML :: FilePath -> T.Text -> Action ()
-buildHTML p html = cacheAction (html, p) $ do
+buildHTML p html = do
   Stdout result <- cmd (Stdin $ T.unpack html) npx
   writeFileChanged (outputFolder </> p) result
  where
@@ -114,7 +114,7 @@ buildHTML p html = cacheAction (html, p) $ do
 
 -- | given a list of posts and pages this will build a table of contents
 buildIndex :: [Post] -> [Page] -> Action ()
-buildIndex posts pages = cacheAction ("index" :: T.Text, posts, pages) $ do
+buildIndex posts pages = do
   indexT <- compileTemplate' "site/templates/archive.html"
   let indexInfo = IndexInfo { posts, pages }
       indexHTML = substitute indexT (withSiteMeta $ toJSON indexInfo)
@@ -124,7 +124,7 @@ buildIndex posts pages = cacheAction ("index" :: T.Text, posts, pages) $ do
 -- | Load a page, process metadata, write it to output, then return the post object
 -- Detects changes to either post content or template
 buildPage :: FilePath -> Action Page
-buildPage srcPath = cacheAction ("page" :: T.Text, srcPath) $ do
+buildPage srcPath = do
   putInfo $ "Rebuilding page: " <> srcPath
   fillTemplate "page"
                srcPath
@@ -133,7 +133,7 @@ buildPage srcPath = cacheAction ("page" :: T.Text, srcPath) $ do
 -- | Load a post, process metadata, write it to output, then return the post object
 -- Detects changes to either post content or template
 buildPost :: FilePath -> Action Post
-buildPost srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
+buildPost srcPath = do
   putInfo $ "Rebuilding post: " <> srcPath
   fillTemplate "post" srcPath (dropDirectory1 srcPath -<.> "html")
 
@@ -151,20 +151,20 @@ fillTemplate def srcPath url = do
   convert fullData
 
 buildCSS :: FilePath -> FilePath -> Action ()
-buildCSS src dst = cacheAction ("css" :: T.Text, src) $ do
+buildCSS src dst = do
   putInfo $ "Minimizing CSS: " <> src
   css <- readFile' src
   let c = either (error . show) id (minifyCSS $ T.pack css)
   writeFileChanged dst (T.unpack c)
 
 copyStaticFiles :: Action ()
-copyStaticFiles = cacheAction ("static-files" :: T.Text) $ do
+copyStaticFiles = do
   filepaths <- getDirectoryFiles "site" ["images//*", "_redirects"]
   void $ forP filepaths $ \f ->
     copyFileChanged ("site" </> f) (outputFolder </> f)
 
 buildStaticFiles :: Action ()
-buildStaticFiles = cacheAction ("static-build" :: T.Text) $ do
+buildStaticFiles = do
   filepaths <- getDirectoryFiles "site" ["css//*"]
   void $ forP filepaths $ \f -> buildCSS ("site" </> f) (outputFolder </> f)
 
