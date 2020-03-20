@@ -1,5 +1,5 @@
 ---
-title: 'About Me'
+title: "About Me"
 description: Jared Weakly - About Me
 ---
 
@@ -14,14 +14,14 @@ A few days later, she asked me to put it back together. Two weeks later, I got b
 I still enjoy taking things apart and putting them back together.
 Some of the things I do and think way too hard about (in no particular order) include:
 
-* Design systems and how to make accessibility sexy.
-* Taking Lupita (my bestest doggo) to the dog park.
-* Types. All the types. Strong type all the things.
-* How to empower developers to ship reliable code without entering build/environment hell.
-* How do I make things that are delicious that don't wreck my metabolism.
-* The meaning of data and how to leverage math for principled data reuse.
-* Why Software Engineering hasn't solved Large Scale Composition yet.
-* Communication is really hard, especially for abstract ideas; how do I communicate more effectively?
-* Ditto for expression of concepts and ideas in a reusable way.
-* What makes learning and memory tick and how do we make it tick better.
-* How can I improve the ergonomics and quality of life of others around me?
+- Design systems and how to make accessibility sexy.
+- Taking Lupita (my bestest doggo) to the dog park.
+- Types. All the types. Strong type all the things.
+- How to empower developers to ship reliable code without entering build/environment hell.
+- How do I make things that are delicious that don't wreck my metabolism.
+- The meaning of data and how to leverage math for principled data reuse.
+- Why Software Engineering hasn't solved Large Scale Composition yet.
+- Communication is really hard, especially for abstract ideas; how do I communicate more effectively?
+- Ditto for expression of concepts and ideas in a reusable way.
+- What makes learning and memory tick and how do we make it tick better.
+- How can I improve the ergonomics and quality of life of others around me?
