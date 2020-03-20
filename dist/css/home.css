@@ -1,1 +1,1 @@
-:root{color:var(--c-p4);--shade:#60001840}a[href]{--link-underline:var(--c-sl3)}h1{font-size:15vw;text-align:center;line-height:1.125;letter-spacing:.05em;text-shadow:.075em .05em .01em var(--shade)}[role=contentinfo]{opacity:0;margin:0}main{flex:unset}
+:root{--background-color:var(--c-p2)}h1{font-size:15vw;text-align:center;line-height:1.125;letter-spacing:.05em;text-shadow:.075em .05em .01em var(--shade)}header{height:0}main{flex:unset}
