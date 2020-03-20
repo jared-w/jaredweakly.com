@@ -36,7 +36,7 @@ executable build
     , lens
     , lens-aeson
     , pandoc
-    , pandoc-emphasize-code
+    -- , pandoc-emphasize-code
     , pandoc-types
     , process
     , shake
