@@ -1,5 +1,11 @@
 cabal-version: 1.12
 
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 24a4c9440c8204d2ebf50b92edadcdfa9b195ae6ac634653fe71ccb3ae2bc238
+
 name:           jaredweakly
 version:        0.1.0.0
 synopsis:       My website
@@ -9,7 +15,7 @@ homepage:       https://github.com/jared-w/jaredweakly.com#readme
 bug-reports:    https://github.com/jared-w/jaredweakly.com/issues
 author:         Jared Weakly
 maintainer:     jaredweakly@gmail.com
-copyright:      2019 Jared Weakly
+copyright:      2020 Jared Weakly
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
@@ -36,7 +42,6 @@ executable build
     , lens
     , lens-aeson
     , pandoc
-    -- , pandoc-emphasize-code
     , pandoc-types
     , process
     , shake
