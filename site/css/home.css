@@ -1,11 +1,13 @@
 :root {
-  --background-color: var(--c-p2);
+  --background-color: var(--c-pl4);
+  --link-underline: var(--c-pl2);
 }
 
 h1 {
   font-size: 15vw;
   text-align: center;
   line-height: 1.125;
+  font-family: "Exodus-Striped", serif;
 
   letter-spacing: 0.05em;
   text-shadow: 0.075em 0.05em 0.01em var(--shade);

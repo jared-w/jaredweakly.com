@@ -1,4 +1,9 @@
-{-# LANGUAGE InstanceSigs #-}
+{-# LANGUAGE DeriveAnyClass        #-}
+{-# LANGUAGE DeriveGeneric         #-}
+{-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE InstanceSigs          #-}
+{-# LANGUAGE NamedFieldPuns        #-}
+{-# LANGUAGE OverloadedStrings     #-}
 module Main where
 
 import           Control.Lens                   ( (^?)
@@ -159,7 +164,7 @@ buildCSS src dst = do
 
 copyStaticFiles :: Action ()
 copyStaticFiles = do
-  filepaths <- getDirectoryFiles "site" ["images//*", "_redirects"]
+  filepaths <- getDirectoryFiles "site" ["images//*", "_redirects", "static//*"]
   void $ forP filepaths $ \f ->
     copyFileChanged ("site" </> f) (outputFolder </> f)
 

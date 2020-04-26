@@ -1,29 +1,31 @@
+@font-face {
+  font-family: "Exodus-Striped";
+  src: url("/static/Exodus-Striped.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Exodus-Sharpen";
+  src: url("/static/Exodus-Sharpen.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+
 :root {
-  --c-pl0: rgba(252, 120, 153, 1);
-  --c-pl1: rgba(255, 254, 254, 1);
-  --c-pl2: rgba(254, 165, 187, 1);
-  --c-pl3: rgba(249, 82, 124, 1);
-  --c-pl4: rgba(244, 47, 96, 1);
+  --c-pl0: rgba(121, 202, 241, 1);
+  --c-pl1: rgba(245, 252, 255, 1);
+  --c-pl2: rgba(166, 222, 249, 1);
+  --c-pl3: rgba(83, 182, 229, 1);
+  --c-pl4: rgba(48, 157, 209, 1);
 
-  --c-sl0: rgba(121, 202, 241, 1);
-  --c-sl1: rgba(245, 252, 255, 1);
-  --c-sl2: rgba(166, 222, 249, 1);
-  --c-sl3: rgba(83, 182, 229, 1);
-  --c-sl4: rgba(48, 157, 209, 1);
+  --c-p0: rgba(10, 67, 95, 1);
+  --c-p1: rgba(8, 103, 148, 1);
+  --c-p2: rgba(13, 83, 118, 1);
+  --c-p3: rgba(3, 46, 67, 1);
+  --c-p4: rgba(2, 27, 39, 1);
 
-  --c-p0: rgba(137, 7, 40, 1);
-  --c-p1: rgba(214, 1, 55, 1);
-  --c-p2: rgba(170, 10, 50, 1);
-  --c-p3: rgba(96, 0, 24, 1);
-  --c-p4: rgba(57, 0, 14, 1);
-
-  --c-s0: rgba(10, 67, 95, 1);
-  --c-s1: rgba(8, 103, 148, 1);
-  --c-s2: rgba(13, 83, 118, 1);
-  --c-s3: rgba(3, 46, 67, 1);
-  --c-s4: rgba(2, 27, 39, 1);
-
-  --shade: rgba(96, 0, 24, 0.25);
+  --shade: rgba(3, 46, 67, 0.25);
 
   /* Variables for rest of system */
   --easing: cubic-bezier(0.2, 0.667, 0.2, 1);
@@ -41,8 +43,8 @@
   --font-size: var(--s0);
 
   /* margins and heights */
-  --line-height: var(--fluid-max-ratio);
-  --line-height-sm: var(--fluid-min-ratio);
+  --line-height: 2.25;
+  --line-height-sm: 1.5;
   --margin-xs: var(--s-4);
   --margin-sm: var(--s-2);
   --margin-md: var(--s0);
@@ -52,7 +54,7 @@
 
   --measure: 65ch;
   --stack-gap: var(--s0);
-  --link-underline: var(--c-sl3);
+  --link-underline: var(--c-pl3);
 
   font-size: var(--font-size);
   line-height: var(--line-height);
@@ -111,10 +113,10 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Playfair Display", serif;
+  font-family: "Exodus-Sharpen", serif;
   text-transform: uppercase;
   line-height: var(--line-height-sm);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 h1 {
@@ -163,10 +165,10 @@ a[href="#main"]:active {
 a[href="#main"]:focus,
 a[href="#main"]:active {
   background-color: var(--background-color);
-  color: var(--c-s4);
+  color: var(--c-p4);
   padding: var(--margin-sm);
   border-width: var(--border-padding);
-  border-color: var(--c-s4);
+  border-color: var(--c-p4);
   font-weight: bold;
 
   --height: calc(
@@ -275,6 +277,10 @@ ul:not([class]) > li:not([class]) + li:not(class),
 article > * + *,
 .stack > * + * {
   margin-top: var(--stack-gap);
+}
+
+main > article {
+  margin-bottom: var(--margin-xl);
 }
 
 /**

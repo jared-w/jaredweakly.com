@@ -1,1 +1,1 @@
-:root{--background-color:var(--c-p2)}h1{font-size:15vw;text-align:center;line-height:1.125;letter-spacing:.05em;text-shadow:.075em .05em .01em var(--shade)}header{height:0}main{flex:unset}
+:root{--background-color:var(--c-pl4);--link-underline:var(--c-pl2)}h1{font-size:15vw;text-align:center;line-height:1.125;font-family:exodus-striped,serif;letter-spacing:.05em;text-shadow:.075em .05em .01em var(--shade)}header{height:0}main{flex:unset}
