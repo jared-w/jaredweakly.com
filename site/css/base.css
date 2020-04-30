@@ -299,6 +299,6 @@ body {
   flex-direction: column;
 }
 
-[role="contentinfo"] {
-  margin-top: var(--margin-xl);
+.post-body {
+  margin-bottom: var(--margin-xl);
 }
