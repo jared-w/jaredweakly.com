@@ -13,29 +13,29 @@
 }
 
 :root {
-  --c-pl0: rgba(121, 202, 241, 1);
-  --c-pl1: rgba(245, 252, 255, 1);
-  --c-pl2: rgba(166, 222, 249, 1);
-  --c-pl3: rgba(83, 182, 229, 1);
-  --c-pl4: rgba(48, 157, 209, 1);
+  --c-pl0: rgba(223, 234, 234, 1);
+  --c-pl1: rgba(127, 163, 165, 1);
+  --c-pl2: rgba(160, 187, 188, 1);
+  --c-pl3: rgba(147, 159, 159, 1);
+  --c-pl4: rgba(127, 140, 141, 1);
 
-  --c-p0: rgba(10, 67, 95, 1);
-  --c-p1: rgba(8, 103, 148, 1);
-  --c-p2: rgba(13, 83, 118, 1);
-  --c-p3: rgba(3, 46, 67, 1);
-  --c-p4: rgba(2, 27, 39, 1);
+  --c-p0: rgba(5, 87, 91, 1);
+  --c-p1: rgba(2, 136, 142, 1);
+  --c-p2: rgba(7, 108, 112, 1);
+  --c-p3: rgba(0, 61, 64, 1);
+  --c-p4: rgba(0, 36, 38, 1);
+}
 
-  --shade: rgba(3, 46, 67, 0.25);
+:root {
+  --shade: rgba(0, 36, 38, 0.25);
 
   /* Variables for rest of system */
   --easing: cubic-bezier(0.2, 0.667, 0.2, 1);
   --duration: 0.3s;
 
-  font-family: "Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family: "Lora", serif;
 
-  --background-color: var(--c-pl1);
+  --background-color: var(--c-pl0);
   background-color: var(--background-color);
   color: var(--c-p4);
   cursor: auto;
@@ -62,6 +62,13 @@
 
 ::selection {
   background-color: var(--shade);
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: "Victor Mono", monospace;
 }
 
 article,
@@ -114,7 +121,7 @@ h2,
 h3,
 h4 {
   font-family: "Exodus-Sharpen", serif;
-  text-transform: uppercase;
+  font-variant-caps: small-caps;
   line-height: var(--line-height-sm);
   font-weight: 800;
 }
@@ -232,6 +239,7 @@ ul.top-navigation {
   display: flex;
   align-items: center;
   overflow-x: auto;
+  font-variant-caps: small-caps;
 }
 
 .top-navigation li {

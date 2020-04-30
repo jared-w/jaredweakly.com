@@ -1,6 +1,7 @@
 :root {
-  --background-color: var(--c-pl4);
-  --link-underline: var(--c-pl2);
+  --background-color: var(--c-p3);
+  --link-underline: var(--c-p2);
+  color: var(--c-pl1);
 }
 
 h1 {
@@ -8,6 +9,8 @@ h1 {
   text-align: center;
   line-height: 1.125;
   font-family: "Exodus-Striped", serif;
+  font-variant-caps: titling-caps;
+  color: var(--c-p2);
 
   letter-spacing: 0.05em;
   text-shadow: 0.075em 0.05em 0.01em var(--shade);

@@ -1,4 +1,4 @@
-:root{--fluid-min-width:320;--fluid-max-width:2160;--fluid-min-size:20;--fluid-max-size:24;--fluid-min-ratio:1.25;--fluid-max-ratio:1.5;--fluid-screen:100vw;--fluid-bp:calc(
+:root{--fluid-min-width:320;--fluid-max-width:2160;--fluid-min-size:18;--fluid-max-size:26;--fluid-min-ratio:1.25;--fluid-max-ratio:1.5;--fluid-screen:100vw;--fluid-bp:calc(
     (var(--fluid-screen) - ((var(--fluid-min-width) / 16) * 1rem)) /
       ((var(--fluid-max-width) / 16) - (var(--fluid-min-width) / 16))
   )}@media screen and (min-width:2160px){:root{--fluid-screen:calc(var(--fluid-max-width) * 1px)}}:root{--fluid-max-negative:(1 / var(--fluid-max-ratio) / var(--fluid-max-ratio));--fluid-min-negative:(1 / var(--fluid-min-ratio) / var(--fluid-min-ratio));--fluid-min-scale--4:var(--fluid-min-scale--1) * var(--fluid-min-ratio) *
