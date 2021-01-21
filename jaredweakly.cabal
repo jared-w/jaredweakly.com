@@ -1,4 +1,4 @@
-cabal-version: 1.12
+cabal-version:      1.12
 
 -- This file has been generated from package.yaml by hpack version 0.33.0.
 --
@@ -6,40 +6,38 @@ cabal-version: 1.12
 --
 -- hash: 24a4c9440c8204d2ebf50b92edadcdfa9b195ae6ac634653fe71ccb3ae2bc238
 
-name:           jaredweakly
-version:        0.1.0.0
-synopsis:       My website
-description:    My personal website.
-category:       Website
-homepage:       https://github.com/jared-w/jaredweakly.com#readme
-bug-reports:    https://github.com/jared-w/jaredweakly.com/issues
-author:         Jared Weakly
-maintainer:     jaredweakly@gmail.com
-copyright:      2020 Jared Weakly
-license:        MIT
-license-file:   LICENSE
-build-type:     Simple
-extra-source-files:
-    README.md
+name:               jaredweakly
+version:            0.1.0.0
+synopsis:           My website
+description:        My personal website.
+category:           Website
+homepage:           https://github.com/jared-w/jaredweakly.com#readme
+bug-reports:        https://github.com/jared-w/jaredweakly.com/issues
+author:             Jared Weakly
+maintainer:         jaredweakly@gmail.com
+copyright:          2020 Jared Weakly
+license:            MIT
+license-file:       LICENSE
+build-type:         Simple
+extra-source-files: README.md
 
 source-repository head
-  type: git
+  type:     git
   location: https://github.com/jared-w/jaredweakly.com
 
 executable build
-  main-is: Main.hs
-  other-modules:
-      Pandoc
-  hs-source-dirs:
-      app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Werror
+  main-is:          Main.hs
+  other-modules:    Pandoc
+  hs-source-dirs:   app
+  ghc-options:      -threaded -rtsopts -with-rtsopts=-N -Wall -Werror
   build-depends:
       aeson
-    , base >=4.7 && <5
+    , base                  >=4.7 && <5
     , containers
     , hasmin
     , lens
     , lens-aeson
+    , mustache
     , pandoc
     , pandoc-types
     , process
@@ -48,4 +46,5 @@ executable build
     , text
     , time
     , unordered-containers
+
   default-language: Haskell2010
