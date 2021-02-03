@@ -1,5 +1,6 @@
 ---
-title: 'Projects'
+title: Projects
+template: page
 description: A curated list of projects in my portfolio
 ---
 

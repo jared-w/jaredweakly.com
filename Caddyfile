@@ -1,0 +1,24 @@
+{
+  admin off
+}
+
+:8081 {
+  file_server
+  encode zstd gzip
+  root dist
+  try_files {path}.html {path}
+}
+
+:8082 {
+  file_server
+  encode zstd gzip
+  root distLucid
+  try_files {path}.html {path}
+}
+
+:8083 {
+  file_server
+  encode zstd gzip
+  root distTemplate
+  try_files {path}.html {path}
+}

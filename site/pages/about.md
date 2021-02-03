@@ -1,11 +1,13 @@
 ---
-title: "About Me"
+title: About Me
+template: page
 description: Jared Weakly - About Me
 ---
 
 ## Sup?
 
 What can I say? I like doing nerdy things, thinking about nerdy things, and more.
+I am also, unfortunately, terrible at describing myself; this page will likely always be out of date...
 
 When I was little, I once got in trouble for being on the computer at 3am for the third time that week.
 Out of frustration, my mom took apart the entire computer so I wouldn’t get on it--unfortunately for her, I was the only one who knew how to put it back together.

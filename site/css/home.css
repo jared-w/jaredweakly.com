@@ -1,11 +1,18 @@
+@font-face {
+  font-family: "Exodus-Striped";
+  src: url("/static/Exodus-Striped.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+
 :root {
+  --text-color: var(--c-pl1);
   --background-color: var(--c-p3);
   --link-underline: var(--c-p2);
-  color: var(--c-pl1);
 }
 
 h1 {
-  font-size: 15vw;
+  font-size: var(--s6);
   text-align: center;
   line-height: 1.125;
   font-family: "Exodus-Striped", serif;
@@ -13,7 +20,7 @@ h1 {
   color: var(--c-p2);
 
   letter-spacing: 0.05em;
-  text-shadow: 0.075em 0.05em 0.01em var(--shade);
+  text-shadow: 0.075em 0.05em 0.02em var(--shade);
 }
 
 header {

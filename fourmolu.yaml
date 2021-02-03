@@ -1,0 +1,3 @@
+indent-wheres: true
+diff-friendly-import-export: false
+haddock-style: single-line

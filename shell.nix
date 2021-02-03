@@ -1,17 +1,13 @@
 let
   pkgs = import ./nix { };
-  nodePkgs = with pkgs.nodePackages; [ html-minifier serve ];
-  haskellPkgs = with pkgs.haskellPackages; [
+  py = pkgs.python3.withPackages (p: [ p.fonttools p.brotli p.zopfli ]);
+  haskellPkgs = with pkgs.haskell.packages.ghc884; [
+    zlib
     cabal-install
     haskell-language-server
     fourmolu
-    hpack
   ];
-  buildTools = with pkgs; [ fsatrace just watchexec nodejs_latest niv ];
-  ps = haskellPkgs ++ nodePkgs ++ buildTools;
-  inherit (import (pkgs.sources.gitignore) { }) gitignoreSource;
-in pkgs.haskellPackages.developPackage {
-  name = "jaredweakly";
-  root = gitignoreSource ./.;
-  modifier = drv: pkgs.haskell.lib.addBuildTools drv ps;
+  buildTools = with pkgs; [ caddy fsatrace just watchexec nodejs_latest niv ];
+in pkgs.mkShell {
+  buildInputs = haskellPkgs ++ buildTools ++ [ py pkgs.zlib.all pkgs.xz.all ];
 }

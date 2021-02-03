@@ -1,6 +1,10 @@
+dist*
+.ghc.environment.*
+result
 .stack-work/
 *~
 .shake
 cabal.project.local
 dist-newstyle
 todo*
+dest/*

@@ -1,0 +1,13 @@
+packages: *.cabal
+
+source-repository-package
+    type: git
+    location: https://github.com/srid/rib.git
+    tag: 8a9989621acc17f3968aafa8400581332a94de39
+    subdir: rib
+
+source-repository-package
+    type: git
+    location: https://github.com/srid/rib.git
+    tag: 8a9989621acc17f3968aafa8400581332a94de39
+    subdir: rib-core

@@ -1,11 +1,4 @@
 @font-face {
-  font-family: "Exodus-Striped";
-  src: url("/static/Exodus-Striped.woff2") format("woff2");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "Exodus-Sharpen";
   src: url("/static/Exodus-Sharpen.woff2") format("woff2");
   font-weight: 800;
@@ -24,11 +17,11 @@
   --c-p2: rgba(7, 108, 112, 1);
   --c-p3: rgba(0, 61, 64, 1);
   --c-p4: rgba(0, 36, 38, 1);
+
+  --shade: rgba(0, 36, 38, 0.25);
 }
 
 :root {
-  --shade: rgba(0, 36, 38, 0.25);
-
   /* Variables for rest of system */
   --easing: cubic-bezier(0.2, 0.667, 0.2, 1);
   --duration: 0.3s;
@@ -36,25 +29,7 @@
   font-family: "Lora", serif;
 
   --background-color: var(--c-pl0);
-  background-color: var(--background-color);
-  color: var(--c-p4);
-  cursor: auto;
-
-  --font-size: var(--s0);
-
-  /* margins and heights */
-  --line-height: 2.25;
-  --line-height-sm: 1.5;
-  --margin-xs: var(--s-4);
-  --margin-sm: var(--s-2);
-  --margin-md: var(--s0);
-  --margin-lg: var(--s2);
-  --margin-xl: var(--s4);
-  --border-padding: 3px;
-
-  --measure: 65ch;
-  --stack-gap: var(--s0);
-  --link-underline: var(--c-pl3);
+  --text-color: var(--c-p4);
 
   font-size: var(--font-size);
   line-height: var(--line-height);
@@ -62,6 +37,28 @@
 
 ::selection {
   background-color: var(--shade);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* TODO: implement manual switch */
+  :root:not([data-user-color-scheme]) {
+    --background-color: var(--c-p4);
+    --text-color: var(--c-pl1);
+    --link-underline: var(--c-p2);
+    --shade: rgba(2, 136, 142, 0.25);
+  }
+}
+
+/* Prevent the page from shifting when a scrollbar is present  */
+@media screen and (min-width: 60em) {
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
+}
+
+header {
+  z-index: 2; /* make sure the nav menu is always selectable */
 }
 
 code,
@@ -90,6 +87,11 @@ body {
   word-wrap: break-word;
   font-kerning: normal;
   font-variant-ligatures: common-ligatures contextual discretionary-ligatures;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+  cursor: auto;
+  transition: background 500ms ease-in-out, color 200ms ease;
 }
 
 main {
@@ -144,7 +146,7 @@ h4 {
 
 blockquote {
   padding-left: var(--margin-sm);
-  border-left: var(--s-4) solid var(--c-p2);
+  border-left: var(--margin-xs) solid var(--c-p2);
   font-variant-caps: small-caps;
 }
 
@@ -172,7 +174,6 @@ a[href="#main"]:active {
 a[href="#main"]:focus,
 a[href="#main"]:active {
   background-color: var(--background-color);
-  color: var(--c-p4);
   padding: var(--margin-sm);
   border-width: var(--border-padding);
   border-color: var(--c-p4);
@@ -189,15 +190,15 @@ main[tabindex="-1"] {
   outline: none;
 }
 
-[href*="github"] > svg {
+[href].icon > svg {
   height: 1.125em;
   width: 1.125em;
   display: flex;
   transition: filter var(--duration) var(--easing);
 }
 
-[href*="github"]:focus > svg,
-[href*="github"]:hover > svg {
+[href].icon:focus > svg,
+[href].icon:hover > svg {
   filter: drop-shadow(0 0.1em 0 var(--link-underline));
 }
 
