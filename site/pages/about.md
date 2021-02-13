@@ -4,26 +4,18 @@ template: page
 description: Jared Weakly - About Me
 ---
 
-## Sup?
+> If you try to ask Jared what time it is, he'll teach you how to build a clock.  
+> \- My mother in law
 
-What can I say? I like doing nerdy things, thinking about nerdy things, and more.
-I am also, unfortunately, terrible at describing myself; this page will likely always be out of date...
+Currently, I spend my days working on building out infrastructure, systems, automation, and tooling to make life easier and better for others (and myself).
+It's fun, challenging, and it can be a bit of an under-appreciated art.
+It's not enough to solve the technical challenges, it's just as important--if not more so--to address the social ones.
+Any sufficiently complex system is a sociotechnical one, and so any sufficiently effective solution must be holistic in its approach and not neglect the core idea that--at the end of the day--humans are the ones operating within these systems.
 
-When I was little, I once got in trouble for being on the computer at 3am for the third time that week.
-Out of frustration, my mom took apart the entire computer so I wouldn’t get on it--unfortunately for her, I was the only one who knew how to put it back together.
-A few days later, she asked me to put it back together. Two weeks later, I got bored and put it back together, got right back to work, and haven’t quit since.
+> Aretê is, to me, the pursuit of learning, trust, and raw excellence for its own sake.
+> To strive ever towards perfection: not because it's possible, but precisely because it is not.
 
-I still enjoy taking things apart and putting them back together.
-Some of the things I do and think way too hard about (in no particular order) include:
-
-- Design systems and how to make accessibility sexy.
-- Taking Lupita (my bestest doggo) to the dog park.
-- Types. All the types. Strong type all the things.
-- How to empower developers to ship reliable code without entering build/environment hell.
-- How do I make things that are delicious that don't wreck my metabolism.
-- The meaning of data and how to leverage math for principled data reuse.
-- Why Software Engineering hasn't solved Large Scale Composition yet.
-- Communication is really hard, especially for abstract ideas; how do I communicate more effectively?
-- Ditto for expression of concepts and ideas in a reusable way.
-- What makes learning and memory tick and how do we make it tick better.
-- How can I improve the ergonomics and quality of life of others around me?
+When I'm not working or programming, you can find me swing dancing, doing gymnastics, playing board games, nerding out about keyboards, drinking coffee, sampling scotch, playing with my dogs, or snuggling my cat.
+Research interest wise, I tend to get most into build systems, programming language theory, type systems, category theory, formal verification, information geometry, and distributed systems.
+Every now and then I manage to find some time to pay attention to my lovely wife, too.
+I also read quite a bit, and try to jot down my thoughts into my ever expanding digital snapshot of my [brain](https://brain.jaredweakly.com).
